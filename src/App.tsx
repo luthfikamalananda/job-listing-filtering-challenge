@@ -35,11 +35,11 @@ function App() {
 
       <main className="bg-[#effafa]">
         <div className="relative w-full flex flex-col justify-center items-center">
-          <div className="bg-[#effafa] drop-shadow-xl shadow-black border-black-700 border absolute -top-10 h-[80px] w-[80%] p-4 flex items-center">
+          <div className="bg-white drop-shadow-xl shadow-black border-black-700 border absolute -top-10 h-[80px] w-[80%] p-4 flex items-center">
             {searchLanguage.map((lang, index) => 
             <>
               <span className="text-base bg-[#e2f9ff] p-4 rounded-lg">{lang}</span>
-              <button className="text-sm bg-[#a7cbd4] mr-5 p-4 rounded-r-lg" 
+              <button className="text-sm bg-[#a7cbd4] mr-5 p-4 rounded-r-lg hover:bg-[#2c3a3a] hover:text-white" 
               onClick={() => {
                 const arrSearch = [...searchLanguage];
                 arrSearch.splice(index, 1)
@@ -55,25 +55,32 @@ function App() {
         <div className="mt-10 flex justify-center items-center flex-col py-4">
           {filteredCompany.map((data, i) => (
             <div
-              className="flex justify-start items-center mt-6 w-[80%]  shadow-xl"
+              className="flex justify-start items-center mt-6 w-[80%] shadow-xl "
               key={i}
             >
               <div id="image" className="p-4">
                 <img src={`${data.logo}`} alt="" />
               </div>
-              <div id="content" className="flex flex-col text-start">
+
+              <div id="content" className="flex flex-col text-start basis-[20%] gap-1">
                 <div id="company-name" className="flex">
-                  <h2>{data.company}</h2>{" "}
-                  <span className="pl-2">{data.new && "NEW"}</span>{" "}
-                  <span className="pl-2">{data.featured && "FEATURED"}</span>
+                  <h2 className="text-[#639d99] font-bold">{data.company}</h2>
+                  {data.new && <span className="ml-2 bg-[#58a09f] text-xs font-bold text-white py-1 px-2 rounded-xl">{data.new && "NEW"}</span>}
+                  {data.featured && <span className="ml-2 bg-[#2c3a3a] text-xs font-bold text-white py-1 px-2 rounded-xl">{data.featured && "FEATURED"}</span>}
                 </div>
-                <h2 className="font-bold">{data.position}</h2>
+                <h2 className="font-bold hover:text-[#639d99] hover:cursor-pointer">{data.position}</h2>
+                <div id="company-desc" className="flex justify-between text-[#9ba19f]">
+                  <p>{data.postedAt}</p>
+                  <p>{data.contract}</p>
+                  <p>{data.location}</p>
+                </div>
               </div>
+
               <div id="job-filter" className="text-end grow p-4">
                 {data.languages.map((lang, i) => (
                   <button
                     key={i}
-                    className="pl-6"
+                    className="ml-2 p-2 bg-[#d5f9f7] rounded-lg text-[#5aa3a2] font-bold hover:text-white hover:bg-[#5aa3a2]"
                     onClick={(e) => {
                       handleClick(lang)
                     }}
