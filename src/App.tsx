@@ -28,34 +28,40 @@ function App() {
       setFilteredCompany(filtered_data)
   } 
 
-
   return (
     <>
       <img src="../images/bg-header-desktop.svg" alt="" />
 
       <main className="bg-[#effafa]">
         <div className="relative w-full flex flex-col justify-center items-center">
-          <div className="bg-white drop-shadow-xl shadow-black border-black-700 border absolute -top-10 h-[80px] w-[80%] p-4 flex items-center">
-            {searchLanguage.map((lang, index) => 
-            <>
-              <span className="text-base bg-[#e2f9ff] p-4 rounded-lg">{lang}</span>
-              <button className="text-sm bg-[#a7cbd4] mr-5 p-4 rounded-r-lg hover:bg-[#2c3a3a] hover:text-white" 
-              onClick={() => {
-                const arrSearch = [...searchLanguage];
-                arrSearch.splice(index, 1)
-                setsearchLanguage(arrSearch)
-                handleSortData(arrSearch);
-              }}
-              >X</button>
-            </>
-            )}
+          <div className="bg-white drop-shadow-xl shadow-black border-black-700 border absolute -top-10 h-[80px] w-[80%] p-4 flex items-center justify-between">
+            <div>
+              {searchLanguage.map((lang, index) => 
+              <>
+                <span className="text-base bg-[#e2f9ff] p-4 rounded-lg">{lang}</span>
+                <button className="text-sm bg-[#a7cbd4] mr-5 p-4 rounded-r-lg hover:bg-[#2c3a3a] hover:text-white" 
+                onClick={() => {
+                  const arrSearch = [...searchLanguage];
+                  arrSearch.splice(index, 1)
+                  setsearchLanguage(arrSearch)
+                  handleSortData(arrSearch);
+                }}
+                >X</button>
+              </>
+              )}
+            </div>
+            <button className="text-end" onClick={() => {
+              setsearchLanguage([])
+              handleSortData([])
+            }}>Clear</button>
           </div>
         </div>
 
         <div className="mt-10 flex justify-center items-center flex-col py-4">
           {filteredCompany.map((data, i) => (
             <div
-              className="flex justify-start items-center mt-6 w-[80%] shadow-xl "
+              id="card"
+              className="flex justify-start items-center mt-6 lg:w-[80%] shadow-xl w-[90%]"
               key={i}
             >
               <div id="image" className="p-4">
